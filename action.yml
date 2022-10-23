@@ -1,0 +1,26 @@
+name: 'Setup mix project'
+description: 'Setup a mix project environment by installing dependencies and compiling the application.'
+author: 'Benjamin Stepp'
+
+inputs:
+  cache-key:
+    description: 'If your application has other files that affect the cache you
+      can add a hash of them here. Can also be passed to "bust" the current cache.'
+    required: false
+    default: 'key'
+  force-compile:
+    description: 'Force runs mix compile on every action run. We try really
+      hard to include all the correct src files as a part of the cache key, but
+      in the cases where we failed you can force compile every time. You should
+      still get incremental caches from the last created build.'
+    default: false
+    required: false
+  working-directory:
+    description: 'Path to your elixir application. This can be configured if
+      your elixir application is in a subdirectory, for example if you are in a
+      monorepo.'
+    required: false
+
+runs:
+  using: 'node16'
+  main: './dist/index.js'
